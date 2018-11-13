@@ -66,7 +66,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _dateText = "${_date.day}/${_date.month}/${_date.year}";
   }
@@ -264,7 +263,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
               color: Colors.black,
               fontFamily: "Pacifico",
             ),
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.center
           ),
         ),
       ),
