@@ -210,11 +210,12 @@ class _ExpenseFormState extends State<ExpenseForm> {
                             txtamount.clear();
                             post();
                             Fluttertoast.showToast(
-                                msg: 'Data Saved Successfully',
-                                gravity: ToastGravity.BOTTOM,
-                                toastLength: Toast.LENGTH_SHORT,
-                                bgcolor: '#FFFFFF',
-                                textcolor: '#333333');
+                              msg: 'Data Saved Successfully',
+                              gravity: ToastGravity.BOTTOM,
+                              toastLength: Toast.LENGTH_SHORT,
+                              // bgcolor: '#FFFFFF',
+                              // textcolor: '#333333'
+                            );
                           });
                         },
                       ),
@@ -256,15 +257,13 @@ class _ExpenseFormState extends State<ExpenseForm> {
         color: Colors.brown,
         child: Container(
           height: 28.0,
-          child: Text(
-            "Powered by GsmDev.",
-            style: TextStyle(
-              fontSize: 15.0,
-              color: Colors.black,
-              fontFamily: "Pacifico",
-            ),
-            textAlign: TextAlign.center
-          ),
+          child: Text("Powered by GsmDev.",
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.black,
+                fontFamily: "Pacifico",
+              ),
+              textAlign: TextAlign.center),
         ),
       ),
     );
