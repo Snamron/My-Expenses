@@ -209,13 +209,16 @@ class _ExpenseFormState extends State<ExpenseForm> {
                             txtdescription.clear();
                             txtamount.clear();
                             post();
+
                             Fluttertoast.showToast(
-                              msg: 'Data Saved Successfully',
-                              gravity: ToastGravity.BOTTOM,
-                              toastLength: Toast.LENGTH_SHORT,
-                              // bgcolor: '#FFFFFF',
-                              // textcolor: '#333333'
-                            );
+                                msg: 'Data Saved Successfully',
+                                gravity: ToastGravity.BOTTOM,
+                                toastLength: Toast.LENGTH_SHORT,
+                                textColor: Colors.grey,
+                                backgroundColor: Colors.transparent
+                                // bgcolor: '#FFFFFF',
+                                // textcolor: '#333333'
+                                );
                           });
                         },
                       ),
