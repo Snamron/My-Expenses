@@ -12,22 +12,11 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   TextEditingController txtexpenseaccount = new TextEditingController();
   TextEditingController txtdescription = new TextEditingController();
-  // TextEditingController txtdate = new TextEditingController();
-  // TextEditingController txtpaymentmethod = new TextEditingController();
+
   TextEditingController txtamount = new TextEditingController();
 
-  // void post() async {
-  //   var result =
-  //       await http.post("http://www.reddiamond.co.ke/expenses.php", body: {
-  //     "expenseaccount": txtexpenseaccount.text,
-  //     "Description": txtdescription.text,
-  //     "Amount": txtamount.text,
-  //   });
-  //   print(result.body);
-  // }
-
   void post() {
-    var url = "http://www.reddiamond.co.ke/expenses.php";
+    var url = "enter your website here";
 
     http.post(url, body: {
       "expenseaccount": txtexpenseaccount.text,
@@ -226,32 +215,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
               )),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: new Text(
-      //     "Save",
-      //     style: TextStyle(
-      //       fontFamily: "Pacifico",
-      //       fontSize: 23.0,
-      //       fontWeight: FontWeight.bold,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.purple[400],
-      //   onPressed: () {
-      //     setState(() {
-      //       txtexpenseaccount.clear();
-      //       txtdescription.clear();
-      //       txtamount.clear();
-      //       post();
-      //       Fluttertoast.showToast(
-      //           msg: 'Data saved',
-      //           gravity: ToastGravity.BOTTOM,
-      //           toastLength: Toast.LENGTH_SHORT,
-      //           bgcolor: '#FFFFFF',
-      //           textcolor: '#333333');
-      //     });
-      //   },
-      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: new BottomAppBar(
         elevation: 0.0,
