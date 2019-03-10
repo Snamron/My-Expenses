@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +17,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   TextEditingController txtamount = new TextEditingController();
 
   void post() {
-    var url = "enter your website here";
+    var url = "http://www.reddiamond.co.ke/expenses.php";
 
     http.post(url, body: {
       "expenseaccount": txtexpenseaccount.text,
@@ -63,7 +64,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        leading: Icon(Icons.fastfood),
+        leading: Icon(FontAwesomeIcons.briefcase),
         title: Text(
           'My Expenses',
           style: new TextStyle(
