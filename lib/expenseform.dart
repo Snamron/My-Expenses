@@ -17,7 +17,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   TextEditingController txtamount = new TextEditingController();
 
   void post() {
-    var url = "http://www.reddiamond.co.ke/expenses.php";
+    var url = "Your  website here";
 
     http.post(url, body: {
       "expenseaccount": txtexpenseaccount.text,
