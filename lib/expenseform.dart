@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -11,20 +10,18 @@ class ExpenseForm extends StatefulWidget {
 }
 
 class _ExpenseFormState extends State<ExpenseForm> {
-  TextEditingController txtexpenseaccount = new TextEditingController();
-  TextEditingController txtdescription = new TextEditingController();
-
-  TextEditingController txtamount = new TextEditingController();
+  TextEditingController txtexpenseaccount = TextEditingController();
+  TextEditingController txtdescription = TextEditingController();
+  TextEditingController txtamount = TextEditingController();
 
   void post() {
-    var url = "Your  website here";
-
+    var url = "http://www.reddiamond.co.ke/expenses.php";
     http.post(url, body: {
-      "expenseaccount": txtexpenseaccount.text,
+      "ExpenseAccount": txtexpenseaccount.text,
       "Description": txtdescription.text,
       "Amount": txtamount.text,
-      "date": _dateText,
-      "paymentmethod": _payment
+      "Date": _dateText,
+      "Paymentmethod": _payment
     });
   }
 
@@ -37,7 +34,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
     });
   }
 
-  DateTime _date = new DateTime.now();
+  DateTime _date = DateTime.now();
   String _dateText = "";
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -62,12 +59,12 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         leading: Icon(FontAwesomeIcons.briefcase),
         title: Text(
           'My Expenses',
-          style: new TextStyle(
+          style: TextStyle(
               color: Colors.white,
               fontSize: 28.0,
               letterSpacing: 3.0,
@@ -77,147 +74,151 @@ class _ExpenseFormState extends State<ExpenseForm> {
         elevation: 20.0,
         centerTitle: true,
       ),
-      body: new ListView(
+      body: ListView(
         children: <Widget>[
-          new Container(
-              padding: new EdgeInsets.all(16.0),
-              child: new Column(
-                children: <Widget>[
-                  new TextField(
-                    controller: txtexpenseaccount,
+          Container(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                TextField(
+                  controller: txtexpenseaccount,
+                  decoration: InputDecoration(
+                    hintText: "expense account",
+                    labelText: "Expense Account",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: TextField(
+                    controller: txtdescription,
+                    maxLines: 5,
                     decoration: InputDecoration(
-                        hintText: "expense account",
-                        labelText: "Expense Account",
-                        border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(20.0))),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: new TextField(
-                      controller: txtdescription,
-                      maxLines: 5,
-                      decoration: InputDecoration(
-                          hintText: "Description",
-                          labelText: "Description",
-                          border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(20.0))),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                    child: new Row(
-                      children: <Widget>[
-                        new Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: new Icon(Icons.date_range),
-                        ),
-                        new Expanded(
-                          child: new Text(
-                            'Select Date',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: "Pacifico",
-                                color: Colors.black54),
-                          ),
-                        ),
-                        new FlatButton(
-                          onPressed: () {
-                            _selectDate(context);
-                          },
-                          child: new Text(
-                            _dateText,
-                            style: TextStyle(
-                                fontSize: 20.0, color: Colors.black54),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: new Row(
-                      children: <Widget>[
-                        new Text(
-                          " Payment Method ",
-                          style: new TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: 'Pacifico',
-                              color: Colors.teal),
-                        ),
-                        new Padding(
-                          padding: new EdgeInsets.only(left: 40.0),
-                        ),
-                        new DropdownButton(
-                          onChanged: (String value) {
-                            selectPayment(value);
-                          },
-                          value: _payment,
-                          items: payment.map((String value) {
-                            return new DropdownMenuItem(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
-                    child: new TextField(
-                      controller: txtamount,
-                      decoration: InputDecoration(
-                          hintText: "Amount",
-                          labelText: "Amount",
-                          border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(20.0))),
-                      keyboardType: TextInputType.number,
-                      maxLines: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: Container(
-                      height: 50.0,
-                      width: 100.0,
-                      child: RaisedButton(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            fontFamily: 'Pacifico',
-                            fontSize: 23.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        shape: StadiumBorder(),
-                        color: Colors.purple[400],
-                        textColor: Colors.white,
-                        elevation: 6.0,
-                        onPressed: () {
-                          txtexpenseaccount.clear();
-                          txtdescription.clear();
-                          txtamount.clear();
-                          post();
-
-                          Fluttertoast.showToast(
-                              msg: 'Data Saved Successfully',
-                              gravity: ToastGravity.BOTTOM,
-                              toastLength: Toast.LENGTH_SHORT,
-                              textColor: Colors.grey,
-                              backgroundColor: Colors.transparent
-                              // bgcolor: '#FFFFFF',
-                              // textcolor: '#333333'
-                              );
-                        },
+                      hintText: "Description",
+                      labelText: "Description",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                   ),
-                ],
-              )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Icon(Icons.date_range),
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Select Date',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontFamily: "Pacifico",
+                              color: Colors.black54),
+                        ),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          _selectDate(context);
+                        },
+                        child: Text(
+                          _dateText,
+                          style:
+                              TextStyle(fontSize: 20.0, color: Colors.black54),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        " Payment Method ",
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontFamily: 'Pacifico',
+                            color: Colors.teal),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 40.0),
+                      ),
+                      DropdownButton(
+                        onChanged: (String value) {
+                          selectPayment(value);
+                        },
+                        value: _payment,
+                        items: payment.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 60.0),
+                  child: TextField(
+                    controller: txtamount,
+                    decoration: InputDecoration(
+                      hintText: "Amount",
+                      labelText: "Amount",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    maxLines: 1,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Container(
+                    height: 50.0,
+                    width: 100.0,
+                    child: RaisedButton(
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                          fontFamily: 'Pacifico',
+                          fontSize: 23.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      shape: StadiumBorder(),
+                      color: Colors.purple[400],
+                      textColor: Colors.white,
+                      elevation: 6.0,
+                      onPressed: () {
+                        txtexpenseaccount.clear();
+                        txtdescription.clear();
+                        txtamount.clear();
+                        post();
+
+                        Fluttertoast.showToast(
+                            timeInSecForIos: 2,
+                            msg: 'Data Saved Successfully',
+                            gravity: ToastGravity.BOTTOM,
+                            toastLength: Toast.LENGTH_SHORT,
+                            textColor: Colors.grey,
+                            backgroundColor: Colors.transparent);
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: new BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         elevation: 0.0,
         color: Colors.brown,
         child: Container(
@@ -228,7 +229,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
                 color: Colors.black,
                 fontFamily: "Pacifico",
               ),
-              textAlign: TextAlign.center),
+              textAlign: TextAlign.right),
         ),
       ),
     );
