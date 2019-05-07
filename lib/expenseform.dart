@@ -61,7 +61,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(FontAwesomeIcons.briefcase),
+        leading: Icon(FontAwesomeIcons.database),
         title: Text(
           'My Expenses',
           style: TextStyle(
