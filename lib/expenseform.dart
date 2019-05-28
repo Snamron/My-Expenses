@@ -25,7 +25,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
     });
   }
 
-  List<String> payment = ["Cash", "Mpesa", "Visa Card"];
+  List<String> payment = ["Cash", "Mobile Pay", "Credit Card"];
   String _payment = "Cash";
 
   void selectPayment(String value) {
