@@ -222,7 +222,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
         elevation: 0.0,
         color: Colors.brown,
         child: Container(
-          height: 28.0,
+          height: 30.0,
           child: Text("Powered by GsmDev.",
               style: TextStyle(
                 fontSize: 15.0,
